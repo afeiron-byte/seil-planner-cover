@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2027학년도 세일고등학교 학습플래너 표지 시안 (3종)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@300;400;600;700;800;900&display=swap');
+
+    :root {
+      --bg-cream: #FAF8F5;      /* 내지와 완벽히 동일한 소프트 미색 */
+      --card-bg: #FFFFFF;
+      --border-col: #E2DDD5;
+      --border-dark: #4A443E;
+      --text-main: #33312E;
+      --text-muted: #8E887E;
+      --seil-red: #B2280E;      /* 세일고 CI 메인 컬러 */
+      --seil-blue: #00A0E9;     /* 슬로건 블루 */
+      --seil-orange: #EA5504;   /* 슬로건 오렌지 */
+      --seil-green: #1B9476;    /* 슬로건 그린 */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+      background-color: #EFECE6;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    /* 상단 시안 선택 컨트롤 바 (화면 전용, 인쇄 시 숨김) */
+    .toolbar {
+      width: 297mm;
+      max-width: 95vw;
+      background: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--border-col);
+      background: var(--bg-cream);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: #F0ECE3;
+    }
+
+    .nav-btn.active {
+      background: var(--border-dark);
+      color: #FFFFFF;
+      border-color: var(--border-dark);
+    }
+
+    .print-btn {
+      background: #3B5A75;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .print-btn:hover { background: #2B4257; }
+
+    /* A4 가로 규격: 297mm x 210mm */
+    .page-sheet {
+      width: 297mm;
+      height: 210mm;
+      background-color: var(--bg-cream);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      position: relative;
+      overflow: hidden;
+      display: none; /* 선택된 시안만 flex로 표시 */
+    }
+    .page-sheet.active {
+      display: flex;
+    }
+
+    [contenteditable="true"] {
+      outline: none;
+      transition: background 0.2s;
+    }
+    [contenteditable="true"]:focus {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 3px;
+    }
+
+    /* =====================================================================
+       시안 1: 모던 미니멀 프레임 (내지 톤앤매너 100% 일체형 & 원형 파노라마)
+       ===================================================================== */
+    .cover-v1 {
+      width: 100%;
+      height: 100%;
+      padding: 10mm;
+      background-color: var(--bg-cream);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v1-frame {
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid var(--border-col);
+      background: var(--card-bg);
+      border-radius: 6px;
+      padding: 12mm 16mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* 상단 헤더: 좌측 학년도 / 우측 세일고 로고 */
+    .v1-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--text-main);
+      padding-bottom: 10px;
+    }
+
+    .v1-year-badge {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .v1-year-num {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+    .v1-year-sub {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+    }
+
+    .v1-logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* 중앙 메인: 좌측 타이포그래피 & 슬로건 / 우측 원형 360도 전경 */
+    .v1-middle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15mm;
+      flex: 1;
+      padding: 6mm 0;
+    }
+
+    .v1-title-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .v1-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--seil-red);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .v1-main-title {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .v1-kor-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: -0.3px;
+      margin-bottom: 24px;
+    }
+
+    .v1-slogan-box {
+      padding-top: 18px;
+      border-top: 1px dashed var(--border-col);
+      display: flex;
+      align-items: center;
+    }
+    .v1-slogan-img {
+      height: 34px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* 360도 지구본 형태 전경 사진의 특성을 살린 원형 액자 프레임 */
+    .v1-photo-circle-wrap {
+      width: 96mm;
+      height: 96mm;
+      border-radius: 50%;
+      padding: 5px;
+      border: 1.5px dashed var(--border-col);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--bg-cream);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    .v1-photo-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      border: 3px solid #FFFFFF;
+    }
+
+    .v1-photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.12); /* 중앙의 원형 학교 전경이 꽉 차게 확대 */
+    }
+
+    /* 하단 학생 정보 입력란 */
+    .v1-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--border-col);
+      padding-top: 12px;
+    }
+
+    .student-info-bar {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .info-field {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .info-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    .info-input {
+      width: 65px;
+      border-bottom: 1px solid var(--text-main);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding-bottom: 2px;
+    }
+    .info-input.name-w {
+      width: 110px;
+    }
+
+    .v1-footer-url {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
+    }
+
+    /* =====================================================================
+       시안 2: 와이드 파노라마 배너형 (하늘 & 캠퍼스 파노라마 강조 스타일)
+       ===================================================================== */
+    .cover-v2 {
+      width: 100%;
+      height: 100%;
+      padding: 10mm;
+      background-color: var(--bg-cream);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v2-card {
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      border: 1px solid var(--border-col);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 상단 54% 와이드 파노라마 전경 이미지 영역 */
+    .v2-hero {
+      height: 54%;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #2C537A;
+    }
+
+    .v2-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 48%;
+    }
+
+    .v2-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(20, 32, 48, 0.72) 0%, rgba(20, 32, 48, 0.25) 55%, rgba(20, 32, 48, 0.1) 100%);
+      padding: 12mm 16mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .v2-hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .v2-badge {
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--text-main);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .v2-hero-title-group {
+      color: #FFFFFF;
+    }
+    .v2-hero-sub {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+    .v2-hero-main {
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      text-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    /* 컬러 포인트 바 (슬로건 3색 라인) */
+    .v2-color-bar {
+      height: 5px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .v2-color-bar div:nth-child(1) { background: var(--seil-blue); }
+    .v2-color-bar div:nth-child(2) { background: var(--seil-orange); }
+    .v2-color-bar div:nth-child(3) { background: var(--seil-green); }
+
+    /* 하단 46% 미색 & 화이트 클린 영역 */
+    .v2-body {
+      flex: 1;
+      padding: 10mm 16mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #FFFFFF;
+      position: relative;
+    }
+
+    /* 중앙 걸침 원형 로고 배지 */
+    .v2-floating-logo {
+      position: absolute;
+      top: -28px;
+      right: 16mm;
+      width: 56px;
+      height: 56px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      padding: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .v2-floating-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .v2-middle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .v2-slogan-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .v2-slogan-caption {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .v2-slogan-img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+      object-position: left;
+    }
+
+    .v2-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1.5px solid var(--border-col);
+      padding-top: 12px;
+    }
+
+    /* =====================================================================
+       시안 3: 에디토리얼 매거진 스플릿 (좌측 다이어리 표지 + 우측 풀블리드 아트)
+       ===================================================================== */
+    .cover-v3 {
+      width: 100%;
+      height: 100%;
+      padding: 10mm;
+      background-color: var(--bg-cream);
+      display: flex;
+    }
+
+    .v3-container {
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid var(--border-col);
+      border-radius: 6px;
+      background: #FFFFFF;
+      display: grid;
+      grid-template-columns: 44% 56%;
+      overflow: hidden;
+    }
+
+    /* 좌측 다크 브라운/베이지 포인트 바인딩 효과 + 미니멀 정보 */
+    .v3-left {
+      padding: 12mm 12mm 10mm 14mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--bg-cream);
+      border-right: 1.5px solid var(--border-col);
+      position: relative;
+    }
+
+    /* 다이어리 책등(Spine) 느낌의 좌측 포인트 라인 */
+    .v3-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4mm;
+      background: var(--border-dark);
+    }
+
+    .v3-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .v3-logo {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+    .v3-school-name {
+      display: flex;
+      flex-direction: column;
+    }
+    .v3-school-kor {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+    }
+    .v3-school-eng {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--seil-red);
+      letter-spacing: 1px;
+    }
+
+    .v3-title-block {
+      margin: auto 0;
+      padding: 10px 0;
+    }
+    .v3-year-tag {
+      display: inline-block;
+      background: var(--border-dark);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .v3-title {
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+    .v3-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+
+    .v3-slogan-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-col);
+      border-radius: 6px;
+      padding: 10px 14px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .v3-slogan-img {
+      height: 26px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* 좌측 하단 개인정보 카드 (내지 박스와 동일한 디자인) */
+    .v3-profile-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-col);
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+    .v3-profile-title {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #F2EEE8;
+      padding-bottom: 4px;
+    }
+    .v3-profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.5fr;
+      gap: 10px;
+      font-size: 11px;
+    }
+    .v3-p-item {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .v3-p-label {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 10px;
+    }
+    .v3-p-val {
+      flex: 1;
+      border-bottom: 1px solid var(--border-col);
+      text-align: center;
+      font-weight: 700;
+      padding-bottom: 1px;
+    }
+
+    /* 우측 전경 사진 영역 */
+    .v3-right {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #FFFFFF;
+      padding: 8mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v3-photo-frame {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-col);
+    }
+
+    .v3-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .v3-photo-caption {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(4px);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 8.5px;
+      color: var(--text-main);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .toolbar {
+        display: none !important;
+      }
+      .page-sheet {
+        box-shadow: none;
+        margin: 0;
+        width: 297mm;
+        height: 210mm;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 시안 선택 컨트롤 바 -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <span style="font-size:13px; font-weight:700; margin-right:6px;">표지 시안 선택:</span>
+      <button class="nav-btn active" onclick="selectCover(1)">시안 1 · 모던 미니멀 서클 (내지 일체형)</button>
+      <button class="nav-btn" onclick="selectCover(2)">시안 2 · 와이드 파노라마 배너형</button>
+      <button class="nav-btn" onclick="selectCover(3)">시안 3 · 에디토리얼 북 커버 (좌우 분할)</button>
+    </div>
+    <button class="print-btn" onclick="window.print()">현재 표지 A4 인쇄 / PDF 저장</button>
+  </div>
+
+  <!-- ===================================================================
+       시안 1: 모던 미니멀 서클 (내지의 미색 배경/라인 프레임 + 360도 원형 전경 강조)
+       =================================================================== -->
+  <div id="cover1" class="page-sheet active">
+    <div class="cover-v1">
+      <div class="v1-frame">
+        
+        <!-- 상단 헤더 -->
+        <div class="v1-top">
+          <div class="v1-year-badge">
+            <span class="v1-year-num">2027</span>
+            <span class="v1-year-sub">ACADEMIC YEAR (2027.03 — 2028.02)</span>
+          </div>
+          <img src="세일고CI-01.png" alt="세일고등학교 로고" class="v1-logo" onerror="this.src='세일고CI-01_2.png'">
+        </div>
+
+        <!-- 중단 메인 타이틀 & 원형 360 캠퍼스 뷰 -->
+        <div class="v1-middle">
+          <div class="v1-title-area">
+            <span class="v1-label">SE-IL HIGH SCHOOL SINCE 1983</span>
+            <div class="v1-main-title">ACADEMIC<br>STUDY PLANNER</div>
+            <div class="v1-kor-title">2027학년도 세일고등학교 자기주도 학습 플래너</div>
+            
+            <div class="v1-slogan-box">
+              <img src="세일로미래로꿈꾸는대로.png" alt="세일로 미래로 꿈꾸는대로" class="v1-slogan-img">
+            </div>
+          </div>
+
+          <!-- 360도 전경 사진이 가진 '지구본/원형' 구도를 살려주는 원형 프레임 -->
+          <div class="v1-photo-circle-wrap">
+            <div class="v1-photo-circle">
+              <img src="세일고등학교 전경.jpg" alt="세일고등학교 전경">
+            </div>
+          </div>
+        </div>
+
+        <!-- 하단 학번/성명 기입란 및 홈페이지 -->
+        <div class="v1-bottom">
+          <div class="student-info-bar">
+            <div class="info-field">
+              <span class="info-label">GRADE</span>
+              <div class="info-input" contenteditable="true"></div>
+              <span style="font-size:11px; color:var(--text-muted);">학년</span>
+            </div>
+            <div class="info-field">
+              <span class="info-label">CLASS</span>
+              <div class="info-input" contenteditable="true"></div>
+              <span style="font-size:11px; color:var(--text-muted);">반</span>
+            </div>
+            <div class="info-field">
+              <span class="info-label">NUMBER</span>
+              <div class="info-input" contenteditable="true"></div>
+              <span style="font-size:11px; color:var(--text-muted);">번</span>
+            </div>
+            <div class="info-field">
+              <span class="info-label">NAME</span>
+              <div class="info-input name-w" contenteditable="true"></div>
+            </div>
+          </div>
+
+          <div class="v1-footer-url">학교 홈페이지(https://seilhs.icehs.kr/main.do)</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       시안 2: 와이드 파노라마 배너형 (푸른 하늘과 학교 전경을 시원하게 배치)
+       =================================================================== -->
+  <div id="cover2" class="page-sheet">
+    <div class="cover-v2">
+      <div class="v2-card">
+        
+        <!-- 상단 파노라마 전경 배너 -->
+        <div class="v2-hero">
+          <img src="세일고등학교 전경.jpg" alt="세일고등학교 전경" class="v2-hero-img">
+          <div class="v2-hero-overlay">
+            <div class="v2-hero-top">
+              <span class="v2-badge">2027 — 2028 ACADEMIC PLANNER</span>
+            </div>
+            <div class="v2-hero-title-group">
+              <div class="v2-hero-sub">SE-IL HIGH SCHOOL</div>
+              <div class="v2-hero-main">STUDY PLANNER &amp; DIARY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 슬로건 3색 포인트 라인 (블루 / 오렌지 / 그린) -->
+        <div class="v2-color-bar">
+          <div></div><div></div><div></div>
+        </div>
+
+        <!-- 하단 슬로건, 로고, 학생 정보 영역 -->
+        <div class="v2-body">
+          <div class="v2-floating-logo">
+            <img src="세일고CI-01.png" alt="세일고등학교 로고" onerror="this.src='세일고CI-01_2.png'">
+          </div>
+
+          <div class="v2-middle-row">
+            <div class="v2-slogan-wrap">
+              <span class="v2-slogan-caption">2027학년도 세일고등학교 학습플래너</span>
+              <img src="세일로미래로꿈꾸는대로.png" alt="세일로 미래로 꿈꾸는대로" class="v2-slogan-img">
+            </div>
+          </div>
+
+          <div class="v2-bottom-row">
+            <div class="student-info-bar">
+              <div class="info-field">
+                <span class="info-label">GRADE</span>
+                <div class="info-input" contenteditable="true"></div>
+                <span style="font-size:11px; color:var(--text-muted);">학년</span>
+              </div>
+              <div class="info-field">
+                <span class="info-label">CLASS</span>
+                <div class="info-input" contenteditable="true"></div>
+                <span style="font-size:11px; color:var(--text-muted);">반</span>
+              </div>
+              <div class="info-field">
+                <span class="info-label">NUMBER</span>
+                <div class="info-input" contenteditable="true"></div>
+                <span style="font-size:11px; color:var(--text-muted);">번</span>
+              </div>
+              <div class="info-field">
+                <span class="info-label">NAME</span>
+                <div class="info-input name-w" contenteditable="true"></div>
+              </div>
+            </div>
+
+            <div class="v1-footer-url">학교 홈페이지(https://seilhs.icehs.kr/main.do)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       시안 3: 에디토리얼 북 커버 (좌측 다이어리 바인딩 + 우측 사진 액자 분할)
+       =================================================================== -->
+  <div id="cover3" class="page-sheet">
+    <div class="cover-v3">
+      <div class="v3-container">
+        
+        <!-- 좌측: 다이어리 타이틀, 슬로건, 프로필 박스 -->
+        <div class="v3-left">
+          <div class="v3-spine"></div>
+
+          <div class="v3-header">
+            <img src="세일고CI-01.png" alt="세일고등학교 로고" class="v3-logo" onerror="this.src='세일고CI-01_2.png'">
+            <div class="v3-school-name">
+              <span class="v3-school-kor">세일고등학교</span>
+              <span class="v3-school-eng">SE-IL HIGH SCHOOL 1983</span>
+            </div>
+          </div>
+
+          <div class="v3-title-block">
+            <span class="v3-year-tag">2027 ACADEMIC YEAR</span>
+            <div class="v3-title">2027<br>STUDY<br>PLANNER</div>
+            <div class="v3-subtitle">자기주도 학습 다이어리 (2027.03 ~ 2028.02)</div>
+
+            <div class="v3-slogan-card">
+              <img src="세일로미래로꿈꾸는대로.png" alt="세일로 미래로 꿈꾸는대로" class="v3-slogan-img">
+            </div>
+          </div>
+
+          <!-- 내지의 카드 스타일과 통일된 학생 프로필 박스 -->
+          <div class="v3-profile-box">
+            <div class="v3-profile-title">STUDENT PROFILE</div>
+            <div class="v3-profile-grid">
+              <div class="v3-p-item">
+                <span class="v3-p-label">학년</span>
+                <div class="v3-p-val" contenteditable="true"></div>
+              </div>
+              <div class="v3-p-item">
+                <span class="v3-p-label">반/번호</span>
+                <div class="v3-p-val" contenteditable="true"></div>
+              </div>
+              <div class="v3-p-item">
+                <span class="v3-p-label">성명</span>
+                <div class="v3-p-val" contenteditable="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측: 세일고 전경 사진 액자 -->
+        <div class="v3-right">
+          <div class="v3-photo-frame">
+            <img src="세일고등학교 전경.jpg" alt="세일고등학교 전경">
+            <div class="v3-photo-caption">학교 홈페이지(https://seilhs.icehs.kr/main.do)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectCover(num) {
+      document.querySelectorAll('.page-sheet').forEach((sheet, idx) => {
+        sheet.classList.toggle('active', idx === (num - 1));
+      });
+      document.querySelectorAll('.nav-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === (num - 1));
+      });
+    }
+  </script>
+</body>
+</html>
